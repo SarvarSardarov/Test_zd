@@ -49,7 +49,7 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 
 8. Откройте `https://site.local` - к WordPress.
 
-9. Откройте `http://metrics.local` — к Grafana (по дефолту `admin` / `admin`).
+9. Откройте `http://metrics.local` - к Grafana (по дефолту `admin` / `admin`).
 
 ## Настройка мониторинга
 
@@ -72,7 +72,7 @@ sudo systemctl enable fail2ban
 sudo fail2ban-client status sshd
 ```
 
-Браузер при первом заходе покажет предупреждение о недоверенном сертификате — это ожидаемо, нужно подтвердить исключение вручную.
+Браузер при первом заходе покажет предупреждение о недоверенном сертификате - это ожидаемо, нужно подтвердить исключение вручную.
 
 Защита `/wp-admin` и `/wp-login.php` по IP.
 
