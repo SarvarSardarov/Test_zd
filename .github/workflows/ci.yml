@@ -58,8 +58,9 @@ jobs:
 
       - name: Check for failed containers
         run: |
-          if docker compose ps --status exited | grep -q .; then
-            echo "Есть упавшие контейнеры!"
+          FAILED=$(docker compose ps --status exited --format "{{.Name}}")
+          if [ -n "$FAILED" ]; then
+            echo "Есть упавшие контейнеры: $FAILED"
             docker compose logs
             exit 1
           fi
