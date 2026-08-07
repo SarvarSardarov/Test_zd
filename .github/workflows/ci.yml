@@ -8,10 +8,11 @@ on:
 
 env:
   # Тестовые значения для .env — только для CI, не боевые пароли
-  MYSQL_ROOT_PASSWORD: ci_test_root_pass
-  MYSQL_DATABASE: wordpress
-  MYSQL_USER: wpuser
-  MYSQL_PASSWORD: ci_test_wp_pass
+  # Имена соответствуют переменным, которые ожидает docker-compose.yml
+  BD_root: ci_test_root_pass
+  BD_bd: wordpress
+  BD_us: wpuser
+  BD_pass: ci_test_wp_pass
 
 jobs:
   validate_compose:
@@ -23,10 +24,10 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD" > .env
-          echo "MYSQL_DATABASE=$MYSQL_DATABASE" >> .env
-          echo "MYSQL_USER=$MYSQL_USER" >> .env
-          echo "MYSQL_PASSWORD=$MYSQL_PASSWORD" >> .env
+          echo "BD_root=$BD_root" > .env
+          echo "BD_bd=$BD_bd" >> .env
+          echo "BD_us=$BD_us" >> .env
+          echo "BD_pass=$BD_pass" >> .env
 
       - name: Validate compose file
         run: docker compose config
@@ -41,10 +42,10 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD" > .env
-          echo "MYSQL_DATABASE=$MYSQL_DATABASE" >> .env
-          echo "MYSQL_USER=$MYSQL_USER" >> .env
-          echo "MYSQL_PASSWORD=$MYSQL_PASSWORD" >> .env
+          echo "BD_root=$BD_root" > .env
+          echo "BD_bd=$BD_bd" >> .env
+          echo "BD_us=$BD_us" >> .env
+          echo "BD_pass=$BD_pass" >> .env
 
       - name: Start containers
         run: docker compose up -d
